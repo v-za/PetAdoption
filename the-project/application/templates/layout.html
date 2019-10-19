@@ -1,0 +1,65 @@
+
+<!-- This is the mother template.
+      baby templates will inherit just for titls sake
+      we don't want to repeat the code
+ -->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+    <meta charset="utf-8">
+
+      {%if title%}
+      <title>petProject - {{title}}</title>
+      {% else %}
+      <title>petProject</title><title>petProject </title>
+      {% endif %}
+  </head>
+  <body>
+
+  <nav class="navbar navbar-expand-md bg-success navbar-dark">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/petAdd">Pet Database</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Blah</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Blah</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Login</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Login</a>
+              <a class="dropdown-item" href="/register">Sign Up</a>
+            </div>
+
+        </li>
+      </ul>
+    </nav>
+    <div class="container-fluid">
+    {% block content %} {% endblock %}
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
