@@ -2,8 +2,8 @@
 
 from flask import render_template,url_for, flash, redirect, request
 from application import app,db
-from application.forms import UserRegistrationForm,petForm,petFormDel
-from application.models import Pet
+from application.forms import UserRegistrationForm,petForm,petFormDel,productForm,productFormDel
+from application.models import Pet,Product
 
 
 
@@ -47,7 +47,6 @@ def petAdd():
     formDel= petFormDel()
     pets = Pet.query.all()
 
-
     if form.validate_on_submit() and form.submit.data:
         print("HELLO SUBMIT")
         pet = Pet(petName=form.petName.data, petType=form.petType.data, petAge=form.petAge.data)
@@ -62,17 +61,31 @@ def petAdd():
             db.session.commit()
             return redirect(url_for('petAdd'))
 
-
-
-
     return render_template('petAdd.html',title='petAdd',form=form,formDel=formDel, pets=pets)
 
+@app.route('/productAdd', methods=['GET','POST'])
 
 
+def productAdd():
+    form = productForm()
+    formDel= productFormDel()
+    products = Product.query.all()
 
+    if form.validate_on_submit() and form.submit.data:
+        print("HELLO SUBMIT")
+        product = Product(productName=form.productName.data, productType=form.productType.data, productInStock=form.productInStock.data)
+        db.session.add(product)
+        db.session.commit()
+        return redirect(url_for('productAdd'))
 
+    if formDel.validate_on_submit() and formDel.delete.data:
+            print("HELLO DELETE")
+            id = int(formDel.id.data)
+            db.session.delete(Product.query.get(id))
+            db.session.commit()
+            return redirect(url_for('productAdd'))
 
-
+    return render_template('productAdd.html',title='productAdd',form=form,formDel=formDel, products=products)
 
 # @app.route('/login')
 #

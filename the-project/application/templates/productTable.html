@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Product Database</h1>
+
+
+
+
+    <table style="width:0%">
+
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Stock</th>
+      </tr>
+      {% for product in products %}
+      <tr>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.productType }}</td>
+        <td>{{ product.productInStock }}</td>
+      </tr>
+      {% endfor %}
+
+    </table>
+
+{% endblock %}
