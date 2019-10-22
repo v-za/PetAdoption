@@ -5,7 +5,7 @@ from application import db
 
 class Pet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    petName = db.Column(db.String(20))
+    petName = db.Column(db.String(20),nullable=False)
     petType = db.Column(db.String(20),nullable=False)
     petAge = db.Column(db.Integer,nullable=False)
     #petImage =
@@ -16,8 +16,10 @@ class Pet(db.Model):
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    productName = db.Column(db.String(20))
+    productName = db.Column(db.String(40),nullable=False)
     productType = db.Column(db.String(20),nullable=False)
+    productDesc = db.Column(db.String(400),nullable=False)
+    productPrice = db.Column(db.Integer,nullable=False)
     productInStock = db.Column(db.Integer,nullable=False)
     #productImage =
 
@@ -27,6 +29,6 @@ class Product(db.Model):
         
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    petName = db.Column(db.String(20))
+    petName = db.Column(db.String(20),nullable=False)
     petType = db.Column(db.String(20),nullable=False)
     petAge = db.Column(db.Integer,nullable=False)

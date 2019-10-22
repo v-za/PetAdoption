@@ -21,8 +21,8 @@ db.session.add(pet_2)
 
 # Create Product Objects
 
-product_1 = Product(productName = "Ruggs' Rubber Bones", productType = "Toy", productInStock = 18)
-product_2 = Product(productName = "Kitty Kingdom Sandbox", productType = "Maintenance", productInStock = 6)
+product_1 = Product(productName = "Ruggs' Rubber Bones", productType = "Toy", productDesc = "A nice rubber bone for your beloved pooch.", productPrice = 2, productInStock = 18)
+product_2 = Product(productName = "Kitty Kingdom Sandbox", productType = "Maintenance", productDesc = "A comfy place for your kitty to relieve himself.", productPrice = 18,  productInStock = 6)
 
 
 # adding Producs to DATABASE

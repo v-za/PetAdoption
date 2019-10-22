@@ -28,9 +28,11 @@ class petForm(FlaskForm):
 
 class productForm(FlaskForm):
 
-    productName = StringField('Name', validators=[Length(min=2, max=40) ])          #other arguments are constraints
+    productName = StringField('Name', validators=[Length(min=2, max=40)])          #other arguments are constraints
     productType = StringField('Type',validators=[Length(min=2, max=20)])
-    productInStock = IntegerField('Age', validators=[])
+    productDesc = StringField('Description',validators=[Length(min=2, max=400)])
+    productPrice = IntegerField('Price', validators=[])
+    productInStock = IntegerField('Stock', validators=[])
     submit = SubmitField('Add')
 
 class petFormDel(FlaskForm):

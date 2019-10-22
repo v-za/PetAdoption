@@ -8,15 +8,19 @@
     <table style="width:0%">
 
       <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Stock</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock</th>
       </tr>
       {% for product in products %}
       <tr>
-        <td>{{ product.productName }}</td>
-        <td>{{ product.productType }}</td>
-        <td>{{ product.productInStock }}</td>
+            <td>{{ product.productName }}</td>
+            <td>{{ product.productType }}</td>
+            <td>{{ product.productDesc }}</td>
+            <td>{{ product.productPrice }}</td>
+            <td>{{ product.productInStock }}</td>
       </tr>
       {% endfor %}
 

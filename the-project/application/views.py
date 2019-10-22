@@ -73,7 +73,7 @@ def productAdd():
 
     if form.validate_on_submit() and form.submit.data:
         print("HELLO SUBMIT")
-        product = Product(productName=form.productName.data, productType=form.productType.data, productInStock=form.productInStock.data)
+        product = Product(productName=form.productName.data, productType=form.productType.data, productDesc=form.productDesc.data, productPrice=form.productPrice.data, productInStock=form.productInStock.data)
         db.session.add(product)
         db.session.commit()
         return redirect(url_for('productAdd'))
