@@ -31,8 +31,7 @@ class Pet(db.Model):
 #method for how our object is printed when printeed out
     def __repr__(self):
         return f"Pet('{self.petName}','{self.petType}','{self.petAge}')"
-<<<<<<< HEAD
-=======
+
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -46,10 +45,5 @@ class Product(db.Model):
 #method for how our object is printed when printeed out
     def __repr__(self):
         return f"Product('{self.productName}','{self.productType}','{self.productAge}')"
-        
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    petName = db.Column(db.String(20),nullable=False)
-    petType = db.Column(db.String(20),nullable=False)
-    petAge = db.Column(db.Integer,nullable=False)
->>>>>>> 3b46ec838ffd4eaebd8b6b855bc6b9c0214f2cef
+
+db.create_all()

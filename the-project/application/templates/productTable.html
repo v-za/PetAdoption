@@ -2,28 +2,32 @@
 {% block content %}
     <h1>Product Database</h1>
 
+    <table class="table table-bordered table-warning" style="width:0%">
 
-
-
-    <table style="width:0%">
-
-      <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Stock</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Stock</th>
+        </tr>
+      </thead>
+      <tbody>
       {% for product in products %}
       <tr>
-            <td>{{ product.productName }}</td>
-            <td>{{ product.productType }}</td>
-            <td>{{ product.productDesc }}</td>
-            <td>{{ product.productPrice }}</td>
-            <td>{{ product.productInStock }}</td>
+        <td>{{ product.id }}</td>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.productType }}</td>
+        <td>{{ product.productDesc }}</td>
+        <td>{{ product.productPrice }}</td>
+        <td>{{ product.productInStock }}</td>
       </tr>
       {% endfor %}
+      </tbody>
 
     </table>
+
 
 {% endblock %}

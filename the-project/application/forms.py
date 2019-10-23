@@ -18,27 +18,3 @@ class UserLoginForm(FlaskForm):
     password = PasswordField('Password',validators=[DataRequired()])
     rememberMe = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
-
-class petForm(FlaskForm):
-
-    petName = StringField('Name', validators=[Length(min=2, max=20) ])          #other arguments are constraints
-    petType = StringField('Type',validators=[Length(min=2, max=20)])
-    petAge = IntegerField('Age', validators=[])
-    submit = SubmitField('Add')
-
-class productForm(FlaskForm):
-
-    productName = StringField('Name', validators=[Length(min=2, max=40)])          #other arguments are constraints
-    productType = StringField('Type',validators=[Length(min=2, max=20)])
-    productDesc = StringField('Description',validators=[Length(min=2, max=400)])
-    productPrice = IntegerField('Price', validators=[])
-    productInStock = IntegerField('Stock', validators=[])
-    submit = SubmitField('Add')
-
-class petFormDel(FlaskForm):
-    id = IntegerField('ID', validators=[])
-    delete = SubmitField('Delete')
-
-class productFormDel(FlaskForm):
-    id = IntegerField('ID', validators=[])
-    delete = SubmitField('Delete')
