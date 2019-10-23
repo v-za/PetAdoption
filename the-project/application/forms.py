@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 #inherting FlaskForm class
 
 class UserRegistrationForm(FlaskForm):
-    firstName = StringField('First Name', validators=[DataRequired(),Length(min=2, max=20) ])          #other arguments are constraints
+    firstName = StringField('First Name', validators=[DataRequired("Too short"),Length(min=2, max=20) ])          #other arguments are constraints
     secondName = StringField('Second Name', validators=[DataRequired(),Length(min=2, max=20) ])
     email = StringField('Email',validators=[DataRequired(),Email()])
     password = PasswordField('Password',validators=[DataRequired(message="Please Enter a Password")])
@@ -17,7 +17,7 @@ class UserLoginForm(FlaskForm):
     email = StringField('Email',validators=[DataRequired(),Email()])          #other arguments are constraints
     password = PasswordField('Password',validators=[DataRequired()])
     rememberMe = BooleanField('Remember Me')
-    submit = SubmitField('Login in')
+    submit = SubmitField('Sign In')
 
 class petForm(FlaskForm):
 
