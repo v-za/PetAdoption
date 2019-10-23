@@ -2,11 +2,16 @@
 
 from flask import render_template,url_for, flash, redirect, request
 from application import app,db
+<<<<<<< HEAD
 from application.forms import UserRegistrationForm,petForm,petFormDel, UserLoginForm
 from application.models import Pet, User
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_login import login_user, current_user, logout_user,login_required
+=======
+from application.forms import UserRegistrationForm,petForm,petFormDel,productForm,productFormDel
+from application.models import Pet,Product
+>>>>>>> 3b46ec838ffd4eaebd8b6b855bc6b9c0214f2cef
 
 
 admin = Admin(app)
@@ -74,7 +79,6 @@ def petAdd():
     formDel= petFormDel()
     pets = Pet.query.all()
 
-
     if form.validate_on_submit() and form.submit.data:
 
         pet = Pet(petName=form.petName.data, petType=form.petType.data, petAge=form.petAge.data)
@@ -89,7 +93,37 @@ def petAdd():
             db.session.commit()
             return redirect(url_for('petAdd'))
 
-
-
-
     return render_template('petAdd.html',title='petAdd',form=form,formDel=formDel, pets=pets)
+<<<<<<< HEAD
+=======
+
+@app.route('/productAdd', methods=['GET','POST'])
+
+
+def productAdd():
+    form = productForm()
+    formDel= productFormDel()
+    products = Product.query.all()
+
+    if form.validate_on_submit() and form.submit.data:
+        print("HELLO SUBMIT")
+        product = Product(productName=form.productName.data, productType=form.productType.data, productDesc=form.productDesc.data, productPrice=form.productPrice.data, productInStock=form.productInStock.data)
+        db.session.add(product)
+        db.session.commit()
+        return redirect(url_for('productAdd'))
+
+    if formDel.validate_on_submit() and formDel.delete.data:
+            print("HELLO DELETE")
+            id = int(formDel.id.data)
+            db.session.delete(Product.query.get(id))
+            db.session.commit()
+            return redirect(url_for('productAdd'))
+
+    return render_template('productAdd.html',title='productAdd',form=form,formDel=formDel, products=products)
+
+# @app.route('/login')
+#
+# def login():
+#     form  = UserLoginForm()
+#     return render_template('login.html', title='Login',form=form)
+>>>>>>> 3b46ec838ffd4eaebd8b6b855bc6b9c0214f2cef
