@@ -70,7 +70,7 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/petAdd', methods=['GET','POST'])
+@app.route('/pet', methods=['GET','POST'])
 
 def petAdd():
     pets = Pet.query.all()
@@ -78,7 +78,7 @@ def petAdd():
 
 
 
-@app.route('/productAdd', methods=['GET','POST'])
+@app.route('/product', methods=['GET','POST'])
 
 def productAdd():
     products = Product.query.all()
