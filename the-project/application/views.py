@@ -3,8 +3,8 @@
 from flask import render_template,url_for, flash, redirect, request
 from application import app,db
 
-from application.forms import UserRegistrationForm,UserLoginForm
-from application.models import Pet, User, Product
+from application.forms import UserRegistrationForm,UserLoginForm,RehomeForm
+from application.models import Pet, User, Product, PetRequest
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_login import login_user, current_user, logout_user,login_required
@@ -22,6 +22,7 @@ class adminModelView(ModelView):
 admin.add_view(adminModelView(Pet,db.session))
 admin.add_view(adminModelView(User,db.session))
 admin.add_view(adminModelView(Product,db.session))
+admin.add_view(adminModelView(PetRequest,db.session))
 
 
 @app.route('/')
@@ -63,23 +64,32 @@ def login():
             return redirect(url_for('home'))
     return render_template('login.html', title='Login',form=form)
 
-
 @app.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
+@app.route('/petDB', methods=['GET','POST'])
 
-@app.route('/pet', methods=['GET','POST'])
-
-def petAdd():
+def petDB():
     pets = Pet.query.all()
     return render_template('petTable.html',title='pet', pets=pets)
 
+@app.route('/productDB', methods=['GET','POST'])
 
-
-@app.route('/product', methods=['GET','POST'])
-
-def productAdd():
+def productDB():
     products = Product.query.all()
     return render_template('productTable.html',title='product', products=products)
+
+@app.route('/petRehome', methods=['GET','POST'])
+
+def petRehome():
+    form = RehomeForm()
+    pets = PetRequest.query.all()
+    if form.validate_on_submit() and form.submit.data:
+        request = PetRequest(petName=form.petName.data,petType=form.petType.data,petAge=form.petAge.data,petDesc=form.petDesc.data,petContact=form.petContact.data)
+        db.session.add(request)
+        db.session.commit()
+        return render_template('confirm.html')
+
+    return render_template('petRehome.html',title='petRehome',form=form, pets=pets)
