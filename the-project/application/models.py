@@ -25,12 +25,15 @@ class Pet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     petName = db.Column(db.String(20),nullable=False)
     petType = db.Column(db.String(20),nullable=False)
+    petGender = db.Column(db.String(6),nullable=False)
+    petBreed = db.Column(db.String(20),nullable=False)
     petAge = db.Column(db.Integer,nullable=False)
-    #petImage =
+    petWeight = db.Column(db.Integer,nullable=False)
+    petImage = db.Column(db.String(20), nullable=False, default='default.jpg')
 
 #method for how our object is printed when printeed out
     def __repr__(self):
-        return f"Pet('{self.petName}','{self.petType}','{self.petAge}')"
+        return f"Pet('{self.petName}','{self.petType}','{self.petAge}', '{self.petImage}')"
 
 
 class Product(db.Model):
