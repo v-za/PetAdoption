@@ -65,7 +65,7 @@
                   {% if form.gender.errors %}
                     {{  form.gender(class="form-control form-control-sm is-invalid") }}
                     <div class="invalid-feedback">
-                      {% for error in form.gender.errors %}
+                      {% for error in form.age.errors %}
                         <span>{{ error }}</span>
                         {% endfor %}
                       </div>
