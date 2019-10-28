@@ -5,10 +5,13 @@ body {
 
 .storeColor{
   background-color: #F26101;
+<<<<<<< HEAD
 }
 
 .dropdown:hover>.dropdown-menu {
   display: block;
+=======
+>>>>>>> ae6f291410ce2b3bd17d1449f542d0209ea57fe7
 }
 
 #logo-main{
@@ -34,6 +37,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+<<<<<<< HEAD
 }
 
 .section2 {
@@ -76,6 +80,50 @@ background: linear-gradient(90deg, rgba(217,232,245,1) 25%, rgba(255,255,255,1) 
   color: white;
 }
 
+=======
+}
+
+.section2 {
+  background:
+    /* top, transparent red, faked with gradient */
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    /* bottom, image */
+    url(../static/images/cat-dark.jpg);
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+#section1 {
+background: rgb(217,232,245);
+background: linear-gradient(90deg, rgba(217,232,245,1) 25%, rgba(255,255,255,1) 50%, rgba(217,232,245,1) 77%, rgba(145,190,212,1) 100%);
+}
+
+#section2 {
+  background: rgb(242,97,1);
+  background: radial-gradient(circle, rgba(242,97,1,1) 0%, rgba(48,66,105,1) 97%);
+  box-shadow: inset 0px 0px 20px 0px rgba(0, 0, 0, 1);
+}
+
+.section1 p {
+  color: white;
+}
+
+.section2 p, .section2 h2, .section2 h4 {
+  color: white;
+}
+
+.subsection2 p {
+  color: white;
+}
+
+>>>>>>> ae6f291410ce2b3bd17d1449f542d0209ea57fe7
 
 .over-text {
   width: 100%;
@@ -121,6 +169,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .adoptInfoImage {
+<<<<<<< HEAD
   width:  300px;
+=======
+  width:  450px;
+>>>>>>> ae6f291410ce2b3bd17d1449f542d0209ea57fe7
   height: 300px;
 }
