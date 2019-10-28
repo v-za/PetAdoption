@@ -7,6 +7,10 @@ body {
   background-color: #F26101;
 }
 
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
 #logo-main{
   display: block;
   margin: auto;
@@ -14,7 +18,7 @@ body {
 }
 
 .masthead {
-  height: 100vh;
+  height: 95vh;
   min-height: 500px;
   background-image: url(../static/images/adorable-animal-blur-406014.jpg);
   background-attachment: fixed;

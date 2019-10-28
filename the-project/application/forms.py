@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, TextField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 #inherting FlaskForm class
@@ -28,5 +28,6 @@ class AdoptionAddForm(FlaskForm):
     gender = StringField('Pet Gender',validators=[DataRequired()])
     age = IntegerField('Pet Age',validators=[DataRequired()])
     weight = IntegerField('Pet Weight',validators=[DataRequired()])
-    picture = FileField('Profile Picture', validators=[FileAllowed(['jpg','png'])])
+    #description = TextField('Pet Description', validators=[DataRequired()])
+    picture = FileField('Profile Picture', validators=[FileAllowed(['jpg','png']), DataRequired()])
     submit = SubmitField('Send Request')
