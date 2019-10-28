@@ -1,13 +1,16 @@
 #views.py
+import os
+import secrets
 
-from flask import render_template,url_for, flash, redirect, request
+from flask import render_template,url_for, flash, redirect, request, abort
+
 from application import app,db
 
-from application.forms import UserRegistrationForm,UserLoginForm
+from application.forms import UserRegistrationForm, UserLoginForm, AdoptionAddForm
 from application.models import Pet, User, Product
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-from flask_login import login_user, current_user, logout_user,login_required
+from flask_login import login_user, current_user, logout_user, login_required
 
 
 
@@ -22,6 +25,10 @@ class adminModelView(ModelView):
 admin.add_view(adminModelView(Pet,db.session))
 admin.add_view(adminModelView(User,db.session))
 admin.add_view(adminModelView(Product,db.session))
+
+@app.errorhandler(404)
+def page_not_found(error):
+   return render_template('404.html', title = '404'), 404
 
 
 @app.route('/')
@@ -70,16 +77,54 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/pet', methods=['GET','POST'])
 
-def petAdd():
+@app.route('/adopt', methods=['GET','POST'])
+
+@app.route('/petAdd', methods=['GET','POST'])
+
+
+def adopt():
     pets = Pet.query.all()
     return render_template('petTable.html',title='pet', pets=pets)
 
 
 
-@app.route('/product', methods=['GET','POST'])
+@app.route('/productAdd', methods=['GET','POST'])
 
 def productAdd():
     products = Product.query.all()
     return render_template('productTable.html',title='product', products=products)
+
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/animal_pics', picture_fn)
+    form_picture.save(picture_path)
+    return picture_fn
+
+@app.route("/adoptionAdd", methods=['GET','POST'])
+def adoptionAdd():
+    form = AdoptionAddForm()
+    if form.validate_on_submit():
+        if form.picture.data:
+            picture_file = save_picture(form.picture.data)
+            pet = Pet(petName=form.name.data,petType=form.type.data, petGender = form.gender.data, petBreed=form.breed.data, petAge=form.age.data, petWeight=form.weight.data, petImage=picture_file)
+        else:
+            pet = Pet(petName=form.name.data,petType=form.type.data, petGender = form.gender.data, petBreed=form.breed.data, petAge=form.age.data, petWeight=form.weight.data)
+        db.session.add(pet)
+        db.session.commit()
+        flash(f'Application Has Been Sent for {form.name.data}!','success')
+        return redirect(url_for('adoptionAdd'))
+    return render_template('adoptionAdd.html',title='Add Pet', form=form)
+
+@app.route("/petAdd/<petID>")
+def adoptInfo(petID):
+    if bool(Pet.query.filter_by(id=petID).first()):
+        pet = Pet.query.filter_by(id=petID).first()
+        return render_template('adoptInfo.html',title='Pet Info', pet=pet)
+    else:
+
+        abort(404)
+
+        return render_template('404.html')
