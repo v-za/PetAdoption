@@ -1,11 +1,7 @@
 #views.py
 import os
 import secrets
-<<<<<<< HEAD
 from flask import render_template,url_for, flash, redirect, request, abort
-=======
-from flask import render_template,url_for, flash, redirect, request
->>>>>>> ae6f291410ce2b3bd17d1449f542d0209ea57fe7
 from application import app,db
 
 from application.forms import UserRegistrationForm, UserLoginForm, AdoptionAddForm
@@ -79,12 +75,7 @@ def logout():
     return redirect(url_for('home'))
 
 
-<<<<<<< HEAD
 @app.route('/adopt', methods=['GET','POST'])
-=======
-@app.route('/petAdd', methods=['GET','POST'])
->>>>>>> ae6f291410ce2b3bd17d1449f542d0209ea57fe7
-
 def adopt():
     pets = Pet.query.all()
     return render_template('petTable.html',title='pet', pets=pets)
@@ -120,14 +111,11 @@ def adoptionAdd():
         return redirect(url_for('adoptionAdd'))
     return render_template('adoptionAdd.html',title='Add Pet', form=form)
 
+
 @app.route("/petAdd/<petID>")
 def adoptInfo(petID):
     if bool(Pet.query.filter_by(id=petID).first()):
         pet = Pet.query.filter_by(id=petID).first()
         return render_template('adoptInfo.html',title='Pet Info', pet=pet)
     else:
-<<<<<<< HEAD
         abort(404)
-=======
-        return render_template('404.html')
->>>>>>> ae6f291410ce2b3bd17d1449f542d0209ea57fe7

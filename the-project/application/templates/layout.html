@@ -1,4 +1,3 @@
-
 <!-- This is the mother template.
       baby templates will inherit just for titls sake
       we don't want to repeat the code
@@ -14,6 +13,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/main.css">
 
 
     <meta charset="utf-8">
@@ -24,34 +24,6 @@
       <title>petProject</title><title>petProject </title>
       {% endif %}
   </head>
-  <body>
-
-<<<<<<< HEAD
-  <nav class="navbar navbar-expand-md bg-success navbar-dark">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="/home">Home</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/about">About</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/petAdd">Pet Database</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Blah</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Blah</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Login</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Login</a>
-              <a class="dropdown-item" href="/register">Sign Up</a>
-            </div>
-=======
-  <body class="mt-0">
     <header>
       <nav class="navbar navbar-expand-md storeColor navbar-light justify-content-center">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -80,7 +52,7 @@
                   </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/petAdd">Pet Database</a>
+                <a class="nav-link" href="/adopt">Pet Database</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/productAdd">Product Database</a>
@@ -112,16 +84,12 @@
             </ul>
           </div>
         </nav>
->>>>>>> ae6f291410ce2b3bd17d1449f542d0209ea57fe7
 
         </li>
       </ul>
     </nav>
-    <div class="container-fluid">
     {% block content %} {% endblock %}
-<<<<<<< HEAD
-    </div>
-=======
+
 
     <!-- Footer -->
 <footer class="page-footer font-small storeColor pt-4">
@@ -215,8 +183,6 @@
 
 </footer>
 <!-- Footer -->
-
->>>>>>> ae6f291410ce2b3bd17d1449f542d0209ea57fe7
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
