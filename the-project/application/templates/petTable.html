@@ -1,25 +1,88 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Pet Database</h1>
 
 
+  <div class="container-fluid m-0 p-0">
+    {%if pettype == 'Cat'%}
+    <header class="mastheadCat">
+      <div class="container-fluid h-100">
+        <div class="row h-100 align-items-center">
+          <div class="col-12 text-center">
+            <h1 class="font-weight-light text-left">Browse By {{title}}</h1>
+          </div>
+        </div>
+      </div>
+      </header>
+      {%elif pettype == 'Dog'%}
+      <header class="mastheadDog">
+        <div class="container-fluid h-100">
+          <div class="row h-100 align-items-center">
+            <div class="col-12 text-center">
+              <h1 class="font-weight-light text-left">Browse By {{title}}</h1>
+            </div>
+          </div>
+        </div>
+        </header>
+        {%elif pettype == 'Fish'%}
+        <header class="mastheadFish">
+          <div class="container-fluid h-100">
+            <div class="row h-100 align-items-center">
+              <div class="col-12 text-center">
+                <h1 class="font-weight-light text-left">Browse By {{title}}</h1>
+              </div>
+            </div>
+          </div>
+          </header>
+          {%elif pettype == 'Bird'%}
+          <header class="mastheadBird">
+            <div class="container-fluid h-100">
+              <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                  <h1 class="font-weight-light text-left">Browse By {{title}}</h1>
+                </div>
+              </div>
+            </div>
+            </header>
+            {%elif pettype == 'Reptile'%}
+            <header class="mastheadReptile">
+              <div class="container-fluid h-100">
+                <div class="row h-100 align-items-center">
+                  <div class="col-12 text-center">
+                    <h1 class="font-weight-light text-left">Browse By {{title}}</h1>
+                  </div>
+                </div>
+              </div>
+              </header>
+              {%elif pettype == 'Small-Animal'%}
+              <header class="mastheadSmallAnimal">
+                <div class="container-fluid h-100">
+                  <div class="row h-100 align-items-center">
+                    <div class="col-12 text-center">
+                      <h1 class="font-weight-light text-left">Browse By {{title}}</h1>
+                    </div>
+                  </div>
+                </div>
+                </header>
+      {%endif%}
+  </div>
 
-
-    <table style="width:0%">
-
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Age</th>
-      </tr>
-      {% for pet in pets %}
-      <tr>
-        <td>{{ pet.petName }}</td>
-        <td>{{ pet.petType }}</td>
-        <td>{{ pet.petAge }}</td>
-      </tr>
-      {% endfor %}
-
-    </table>
+    <div class="container p-4 mb-4">
+      <div class="row justify-content-center align-self-center">
+      </div>
+      <div class="row">
+        {% for pet in pets %}
+        <div class="col-lg-2">
+          <div class="thumbnail text-center">
+            <a href="/petAdd/{{pet.id}}">
+              <img src="../static/animal_pics/{{pet.petImage}}" class="rounded-circle pet-image shadow-lg img-fluid" alt="Animal" width="150">
+              <div class="caption">
+                <button class="btn btn-primary mt-2" type="button" name="button">Meet {{pet.petName}}</button>
+              </div>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
 
 {% endblock %}
