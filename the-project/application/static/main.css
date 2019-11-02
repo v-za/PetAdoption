@@ -207,3 +207,17 @@ h1, h2, h3, h4, h5, h6 {
   width:  800px;
   height: 400px;
 }
+
+.adoptText {
+  font-family: "Arial Black", "Arial Bold";
+  font-size: 24px;
+}
+
+.alternate {
+  background-color: red;
+}
+
+.box {
+   display: flex;
+   align-items:center;
+}

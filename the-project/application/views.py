@@ -11,9 +11,6 @@ from flask_admin.contrib.sqla import ModelView
 from flask_login import login_user, current_user, logout_user, login_required
 
 
-
-
-
 admin = Admin(app)
 ## ADMIN VIEWS ####
 
@@ -101,13 +98,21 @@ def login():
     return render_template('login.html', title='Login',form=form)
 
 
+def save_pictureUser(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
+    form_picture.save(picture_path)
+    return picture_fn
+
 @app.route('/myaccount', methods=['GET','POST'])
 def myaccount():
     form = UpdateAccountForm()
     if form.validate_on_submit():
-        if current_user.username == form.username.data:
-            flash('Username or Email is still the same','warning')
-            return redirect(url_for('myaccount'))
+        if form.picture.data:
+            picture_file = save_pictureUser(form.picture.data)
+            current_user.userPic = picture_file
         current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
@@ -142,27 +147,3 @@ def adoptionAdd():
         flash(f'Application Has Been Sent for {form.name.data}!','success')
         return redirect(url_for('adoptionAdd'))
     return render_template('adoptionAdd.html',title='Add Pet', form=form)
-
-
-def save_picture(form_picture):
-    random_hex = secrets.token_hex(8)
-    _, f_ext = os.path.splitext(form_picture.filename)
-    picture_fn = random_hex + f_ext
-    picture_path = os.path.join(app.root_path, 'static/product_pics', picture_fn)
-    form_picture.save(picture_path)
-    return picture_fn
-
-@app.route("/productAdd", methods=['GET','POST'])
-def productAdd():
-    form = ProductAddForm()
-    if form.validate_on_submit():
-        if form.productImage.data:
-            picture_file = save_picture(form.picture.data)
-            product = Product(productName=form.productName.data,productType=form.productType.data, productDesc = form.productDesc.data, productPrice=form.productPrice.data, productInStock=form.productInStock.data, productImage=picture_file)
-        else:
-            product = Product(productName=form.productName.data,productType=form.productType.data, productDesc = form.productDesc.data, productPrice=form.productPrice.data, productInStock=form.productInStock.data)
-        db.session.add(product)
-        db.session.commit()
-        flash(f'Application Has Been Sent for {form.productName.data}!','success')
-        return redirect(url_for('productAdd'))
-    return render_template('productAdd.html',title='Add Product', form=form)
