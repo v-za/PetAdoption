@@ -1,4 +1,0 @@
-# PetAdoption
-
-## Description
-
