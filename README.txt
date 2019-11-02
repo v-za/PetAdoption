@@ -1,4 +1,4 @@
------------ HOW TO START VIRTUALENV on WINDOWS ------------------------------------
+------------------------------------------ HOW TO START VIRTUALENV on WINDOWS ---------------------------------------
 
 1) First, Make sure you have python installed to your PC:
 	
