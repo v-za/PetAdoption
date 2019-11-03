@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<header class="masthead2">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+        <div class="col-lg-4">
+          <img src="../static/animal_pics/{{pet.petImage}}" class="adoptInfoImage img-fluid" alt="{{pet.petName}}">
+        </div>
+        <div class="col-lg-8">
+          <table class="table table-bordered">
+            <thead>
+              <h2 class="text-center bg-dark mb-0 display-4 pt-4">Meet {{pet.petName}}</h2>
+              <tr class="text-center">
+                <th scope="col" style="width: 5%">Breed</th>
+                <th scope="col" style="width: 5%">Gender</th>
+                <th scope="col" style="width: 5%">Age</th>
+                <th scope="col" style="width: 5%">Weight</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr>
+                <td>
+                  <p>{{pet.petBreed}}</p>
+                </td>
+                <td>
+                  <p>{{pet.petGender}}</p>
+                </td>
+                <td>
+                  <p>{{pet.petAge}}</p>
+                </td>
+                <td>
+                  <p>{{pet.petWeight}}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+  </div>
+</header>
+
+{% endblock %}
