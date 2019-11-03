@@ -4,7 +4,7 @@ import secrets
 from flask import render_template,url_for, flash, redirect, request, abort
 from application import app,db
 
-from application.forms import UserRegistrationForm, UserLoginForm, AdoptionAddForm
+from application.forms import UserRegistrationForm, UserLoginForm, AdoptionAddForm, UpdateUserDetailsForm,UpdateUserPasswordForm
 from application.models import Pet, User, Product
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
@@ -37,7 +37,7 @@ def home():
     return render_template('home.html',title="Home")
 
 @app.route('/about')
-@login_required
+
 def about():
     return render_template('about.html',title="About")
 
@@ -81,6 +81,28 @@ def adopt():
     return render_template('petTable.html',title='pet', pets=pets)
 
 
+@app.route('/account', methods=['GET','POST'])
+@login_required
+def account():
+    form = UpdateUserDetailsForm()
+    #form2 = UpdateUserPasswordForm()
+    if form.validate_on_submit():
+        current_user.firstName = form.firstName.data
+
+        current_user.secondName = form.secondName.data
+
+        current_user.email = form.email.data
+
+        db.session.commit()
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        current_user.firstName = current_user.firstName
+
+        current_user.secondName = current_user.secondName
+
+        current_user.email = current_user.email
+
+    return render_template("account.html",title=current_user.firstName + "'s Account", form=form)
 
 @app.route('/productAdd', methods=['GET','POST'])
 

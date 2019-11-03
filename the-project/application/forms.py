@@ -32,3 +32,17 @@ class AdoptionAddForm(FlaskForm):
     #description = TextField('Pet Description', validators=[DataRequired()])
     picture = FileField('Profile Picture', validators=[FileAllowed(['jpg','png'])])
     submit = SubmitField('Send Request')
+
+
+class UpdateUserDetailsForm(FlaskForm):
+    firstName = StringField('First Name', validators=[Length(min=2, max=20) ])          #other arguments are constraints
+    secondName = StringField('Second Name', validators=[Length(min=2, max=20) ])
+    email = StringField('Email',validators=[Email()])
+
+    submit = SubmitField('Update')
+
+class UpdateUserPasswordForm(FlaskForm):
+    old_password = PasswordField('Password',validators=[DataRequired(message="Please Enter Current Password")])
+    new_password = PasswordField('Password',validators=[DataRequired(message="Please Enter a New Password")])
+    confirm_password = PasswordField('Confirm Password',validators=[DataRequired(),EqualTo('password')])
+    update = SubmitField('Update Password')
