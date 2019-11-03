@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<table class="table table-bordered table-warning" style="width:0%">
+
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for meeting in meetings %}
+  <tr>
+    <td>{{ meeting.meetingName }}</td>
+    <td>{{ meeting.meetingDate }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+
+</table>
+
+{% endblock content %}

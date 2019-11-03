@@ -41,7 +41,7 @@ def home():
 @app.route('/about')
 def about():
 	return render_template('about.html',title="About")
-	
+
 @app.route('/register', methods=['GET','POST'])
 
 def register():
@@ -113,7 +113,7 @@ def adoptionAdd():
 		return render_template('adoptionAdd.html',title='Add Pet', form=form)
 	else:
 		return render_template('requestLogin.html',title="Please Log In")
-    
+
 
 
 @app.route("/petAdd/<petID>")
@@ -124,10 +124,19 @@ def adoptInfo(petID):
     else:
         abort(404)
 
+@app.route("/meeting", methods=['GET','POST'])
+@login_required
+def meetingDisplay():
+    meetings = Meeting.query.all()
+    return render_template('meetingShow.html',title='product', meetings=meetings)
+
 @app.route("/meetingAdd", methods=['GET','POST'])
 def meetingAdd():
+    #meetings = Meeting.query.all()
+    #meetings = Meeting.query.all()
 	if(current_user.is_authenticated):
 		form = MeetingAddForm()
+
 		if form.validate_on_submit() and form.submit.data:
 			meeting = Meeting(meetingName=current_user.name,meetingDate=form.date.data,meetingEmail=current_user.email,meetingPhone=current_user.phone)
 			db.session.add(meeting)
